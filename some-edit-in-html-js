@@ -1,0 +1,132 @@
+/*NEW JS*/
+function addCheck(e) {
+  let allArticleWithCheck = [];
+  for (let check of allArticl) {
+    // console.log(check.children[0]);
+    check.addEventListener('click', (e) => {
+      console.log('click');
+      if (check.children[2].checked === true) {
+        check.children[0].firstElementChild.classList.remove('invisible');
+        check.children[0].setAttribute(
+          'style',
+          ' background-image:linear-gradient(to right bottom, #57ddff, #c058f3); '
+        );
+        check.children[1].classList.add('line');
+      } else {
+        check.children[0].firstElementChild.classList.add('invisible');
+        check.children[1].classList.remove('line');
+        check.children[0].removeAttribute(
+          'style',
+          ' background-image:linear-gradient(to right bottom, #57ddff, #c058f3); '
+        );
+      }
+    });
+    // console.log(check.children);
+    allArticleWithCheck.push(check.children[0]);
+  }
+  // console.log(allArticleWithCheck);
+}
+addCheck();
+/*
+/*NEW*/
+   <article completed="false" draggable="true" id="draggable-" class="itm  flex text-white pt-4 pb-4 pl-4 ">
+        <span class="circle border border-gray-500   right-0 h-6 w-6 rounded-3xl ">
+          <img class="img px-1.5 pt-1.5 pb-1 invisible" src="./src/images/icon-check.svg" alt="">
+        </span>
+        <p class="text_P pl-3 flex-grow">lovely day 1</p>
+        <input class="allInput hidden" type="checkbox" id="cir1">
+        <label class=" " for="cir1"></label>
+        <div class="">
+          <img class="delete-btn bg-icon-cross mr-3 cursor-pointer" src="./src/images/icon-cross.svg" alt="">
+        </div>
+      </article>
+
+
+
+*/
+
+{% comment %} old html {% endcomment %}
+<article completed="false" draggable="true" id="draggable-2"
+        class="itm  flex justify-between text-white pt-4 pb-4 pl-6 text-left">
+        <p class="text_P pl-6">lovely day 2</p>
+        <input class="allInput " type="checkbox" id="cir2">
+        <label class=" " for="cir2">
+          <span class="circle border border-gray-500 left-12 absolute right-0 h-6 w-6 rounded-3xl ">
+            <img class="img px-1.5 pt-1.5 pb-1 invisible" src="./src/images/icon-check.svg" alt="">
+          </span>
+        </label>
+        <div class="">
+          <img class="delete-btn bg-icon-cross mr-3 cursor-pointer" src="./src/images/icon-cross.svg" alt="">
+        </div>
+      </article>
+
+
+
+
+
+
+
+
+
+
+
+/*OLD JS*/
+function addCheck(e) {
+  let withCheck = [];
+  for (let check of allArticl) {
+    // let img = check.nextElementSibling.firstElementChild.firstElementChild;
+    // console.log(check.children[0].firstElementChild);
+    check.addEventListener('click', (e) => {
+      if (check.children[1].checked === true) {
+        check.children[2].firstElementChild.firstElementChild.classList.remove(
+          'invisible'
+        );
+        check.children[0].classList.add('line');
+      } else {
+        check.children[2].firstElementChild.firstElementChild.classList.add(
+          'invisible'
+        );
+        check.children[0].classList.remove('line');
+      }
+    });
+    // console.log(check.children);
+    withCheck.push(check);
+  }
+  console.log(withCheck);
+}
+addCheck();
+
+
+/*old js version 2*/
+function addCheck(e) {
+  let withCheck = [];
+  for (let check of allArticl) {
+    // let img = check.nextElementSibling.firstElementChild.firstElementChild;
+    // console.log(check.children[0].firstElementChild);
+    check.addEventListener('click', (e) => {
+      if (check.children[1].checked === true) {
+        check.children[2].firstElementChild.firstElementChild.classList.remove(
+          'invisible'
+        );
+        check.children[2].firstElementChild.setAttribute(
+          'style',
+          ' background-image:linear-gradient(to right bottom, #57ddff, #c058f3); '
+        );
+        check.children[0].classList.add('line');
+      } else {
+        check.children[2].firstElementChild.firstElementChild.classList.add(
+          'invisible'
+        );
+        check.children[0].classList.remove('line');
+        check.children[2].firstElementChild.removeAttribute(
+          'style',
+          ' background-image:linear-gradient(to right bottom, #57ddff, #c058f3); '
+        );
+      }
+    });
+    // console.log(check.children);
+    withCheck.push(check.children[2].firstElementChild);
+  }
+  console.log(withCheck);
+}
+addCheck();

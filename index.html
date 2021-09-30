@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+  <link rel="stylesheet" href="./src/build/tailwind.css" />
+  <link rel="stylesheet" href="./src/style.css" />
+  <script src=""></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
+  <script defer type="module" src="./src/main.js"></script>
+  <title>Frontend Mentor | Todo app</title>
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+
+  <style>
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+</head>
+
+<body class="text-FontBody font-Josefin font-normal body">
+  <!-- header -->
+  <header class=" mx-auto px-8 pt-8 w-full  bg-dark-mobile h-60 bg-cover">
+    <div class="flex justify-between mb-10">
+      <div class="todo text-white">
+        <h1 class="tracking-widest uppercase text-4xl  font-bold">
+          TODO
+        </h1>
+      </div>
+      <div class="dark-light cursor-pointer bg-icon-sun h-7 bg-no-repeat w-7"></div>
+    </div>
+    <form onsubmit="return false" class="parent-list pt-4 pb-4 rounded-md">
+      <!-- <label class="inline-block relative select-none" for="mark"> -->
+      <!-- <input type="checkbox" name="" class="ml-6 opacity-0 cursor-pointer h-0 w-0" id="mark" /> -->
+      <button class="butt pointer-events-none  border border-gray-500 left-12 absolute right-0 h-6 w-6 rounded-3xl"
+        aria-label="button"></button>
+      <span class=""></span>
+      </button>
+      <!-- </label> -->
+      <input maxlength="20" class="ml-12 w-9/12 bg-transparent text-white placeholder-gray-500 outline-none" type="text"
+        placeholder="Create a new todo..." />
+    </form>
+  </header>
+  <!-- content -->
+  <section class="parent -mt-24 mx-auto px-8 pt-8 w-full ">
+    <!-- all articles -->
+    <div class="up capitalize rounded-t-md container  ul items-center mt-7">
+      <!-- work with addCheck2 -->
+      <!-- <article completed="false" draggable="true" id="draggable-1" class="itm  flex text-white pt-4 pb-4 pl-4 ">
+        <span class="circle border border-gray-500   right-0 h-6 w-6 rounded-3xl ">
+          <img class="img px-1.5 pt-1.5 pb-1 invisible" src="./src/images/icon-check.svg" alt="">
+        </span>
+        <p class="text_P pl-3 flex-grow">lovely day 1</p>
+        <input class="allInput " type="checkbox" id="cir1">
+        <label for="cir1"></label>
+        <div class="">
+          <img class=" delete-btn bg-icon-cross mr-3 cursor-pointer" src="./src/images/icon-cross.svg" alt="">
+        </div>
+      </article>
+      <article completed="false" draggable="true" id="draggable-2" class="itm  flex text-white pt-4 pb-4 pl-4 ">
+        <span class="circle border border-gray-500   right-0 h-6 w-6 rounded-3xl ">
+          <img class="img px-1.5 pt-1.5 pb-1 invisible" src="./src/images/icon-check.svg" alt="">
+        </span>
+        <p class="text_P pl-3 flex-grow">lovely day 2</p>
+        <input class="allInput " type="checkbox" id="cir2">
+        <label for="cir2"></label>
+        <div class="">
+          <img class=" delete-btn bg-icon-cross mr-3 cursor-pointer" src="./src/images/icon-cross.svg" alt="">
+        </div>
+      </article> -->
+
+
+      <!-- last edit -->
+      <!-- <article draggable="true" id="draggable-"
+        class="itm rounded-t-md  flex justify-between text-white pt-4 pb-4 pl-6 text-left">
+        <label class="border border-gray-500   right-0 h-6 w-6 rounded-3xl" for="cr">
+          <span class="circle  ">
+            <input class="allInput hidden" type="checkbox" id="cr">
+            <img class="img px-1.5 pt-1.5" src="./src/images/icon-check.svg" alt="">
+          </span>
+        </label>
+        <p class="text_P pl-3 flex-grow">${task.text}</p>
+        <div class="">
+          <img class=" delete-btn bg-icon-cross mr-3 cursor-pointer" src="./src/images/icon-cross.svg" alt="">
+        </div>
+      </article> -->
+
+      <!-- work with addCheck -->
+
+      <!-- <article draggable="true" id="draggable-"
+        class="itm rounded-t-md  flex justify-between text-white pt-4 pb-4 pl-6 text-left">
+        <p class="text_P pl-6">lovely day old one</p>
+        <input class="allInput hidden" type="checkbox" id="cir1">
+        <label class=" " for="cir1">
+          <span class="circle border border-gray-500 left-12 absolute right-0 h-6 w-6 rounded-3xl ">
+            <img class="img px-1.5 pt-1.5 pb-1 invisible" src="./src/images/icon-check.svg" alt="">
+          </span>
+        </label>
+        <div class="">
+          <img class="delete-btn bg-icon-cross mr-3 cursor-pointer" src="./src/images/icon-cross.svg" alt="">
+        </div>
+      </article>
+      <article draggable="true" id="draggable-" class="itm  flex justify-between text-white pt-4 pb-4 pl-6 text-left">
+        <p class="text_P pl-6">lovely day 2</p>
+        <input class="allInput " type="checkbox" id="cir2">
+        <label class=" " for="cir2">
+          <span class="circle border border-gray-500 left-12 absolute right-0 h-6 w-6 rounded-3xl ">
+            <img class="img px-1.5 pt-1.5 pb-1 invisible" src="./src/images/icon-check.svg" alt="">
+          </span>
+        </label>
+        <div class="">
+          <img class="delete-btn bg-icon-cross mr-3 cursor-pointer" src="./src/images/icon-cross.svg" alt="">
+        </div>
+      </article> -->
+    </div>
+    <div class="down text-gray-500 rounded-b-md container  pt-4  flex justify-between px-5 pb-4">
+      <div class="lef">
+        <span class="num">4</span>
+        <span>items left</span>
+      </div>
+      <button type="reset" class="flex hover:text-BrightBlue">Clear Completed</button>
+    </div>
+    <div class="all down2 mt-7  rounded-md text-gray-500 rounded-b-md container   px-5 pt-3 pb-3">
+      <div class="all-btns flex justify-center">
+        <button class="btn-1 pr-3 focus:outline-none hover:text-BrightBlue">All</button>
+        <button class="btn-2 pr-3 focus:outline-none  hover:text-BrightBlue">Active</button>
+        <button class="btn-3 pr-3 focus:outline-none  hover:text-BrightBlue">Completed</button>
+      </div>
+    </div>
+  </section>
+  <!-- Todo -->
+
+  <!-- Add dynamic number -->
+  <!-- items left All Active Completed Clear Completed Drag and drop to reorder
+    list -->
+
+  <!-- <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div> -->
+</body>
+
+</html>

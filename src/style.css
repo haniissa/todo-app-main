@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  perspective: 800px;
+}
+::placeholder,
+.parent-list,
+.butt,
+.itm,
+.down2,
+.up,
+.down {
+  background-color: #25273c;
+}
+.input::placeholder,
+.parent-listW,
+.buttW,
+.itmW,
+.upW,
+.downW2,
+.downW {
+  transition: transform 0.6s cubic-bezier(0.85, -0.34, 0.66, -0.05);
+  background-color: #fafafa;
+}
+.input2 {
+  color: #4d5066;
+}
+/* .circle{
+    border: 1px solid #393a4c;
+} */
+
+.down {
+  border-top: 1px solid rgba(77, 77, 77, 0.556);
+}
+.body {
+  transition: transform 0.22s cubic-bezier(0.85, -0.34, 0.66, -0.05);
+  background-color: #161722;
+}
+.toWhie {
+  transition: transform 0.8s cubic-bezier(0.85, -0.34, 0.66, -0.05);
+  background-color: #e4e5f1;
+}
+.itm:not(:last-child) {
+  border-bottom: 1px solid rgba(77, 77, 77, 0.556);
+}
+.dark-light {
+  transition: transform 0.6s cubic-bezier(0.85, -0.34, 0.66, -0.05);
+  /* transform-origin: 0% 0%; */
+}
+article span.circle {
+  cursor: pointer;
+}
+.text-color {
+  color: #777a92;
+  /* color: #4d5066; */
+  /* color: red; */
+}
+/* .text_P { */
+/* margin: 0px 0px 0 -60px; */
+/* } */
+
+/* .animate {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+} */
+/* article input:checked + label span.circle { */
+/* background-image: linear-gradient(to right bottom, #57ddff, #c058f3); */
+/* background: url('./images/icon-check.svg'); */
+/* } */
+/* article label input:checked ~ span.circle {
+  background-image: url('./images/icon-check.svg');
+} */
+
+/* .done {
+  background-image: linear-gradient(to right bottom, #57ddff, #c058f3);
+  width: 1.5rem;
+  height: 1.375rem;
+  border-radius: 1.5rem;
+  background: url('./images/icon-check.svg');
+} */
+
+.line {
+  text-decoration: line-through double black;
+  text-decoration-thickness: 10%;
+  color: #6f7296;
+}
+.over {
+  transform: scale(1.03);
+  opacity: 0.4;
+}
+
+@keyframes deleteAnime {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+  }
+  50% {
+    opacity: 0.75;
+  }
+  70% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+}
