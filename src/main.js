@@ -12,44 +12,14 @@ console.log(allArticl);
 
 const up = document.querySelector('.parent .up');
 
-// let draggable = document.querySelectorAll('.parent .up article');
-// function pushFiveArticleFromHtml() {
-//   draggable.forEach((n) => {
-//     // console.log(n);
-//     addEventDragAndDrop(n);
-//     allArticl.push(n);
-//   });
-// }
-// pushFiveArticleFromHtml();
-
-// function loopAllArticleAndAddEvent() {
-//   allArticl.forEach((e) => {
-//     addEventDragAndDrop(e);
-//   });
-// }
-
-// function addEventDragAndDrop(el) {
-//   el.addEventListener('dragstart', dragStart);
-//   el.addEventListener('dragenter', dragEnter);
-//   el.addEventListener('dragover', dragOver);
-//   el.addEventListener('dragleave', dragLeave);
-//   el.addEventListener('dragend', dragEnd);
-//   el.addEventListener('drop', drop);
-// }
-// let i = allArticl.forEach((n) => {
-//   console.log(n);
-// });
-
 //to count all article in To-Do app
 function countAllArticle() {
   const parent = document.querySelector('.parent .down .lef .num');
   parent.innerText = `${up.childElementCount}`;
-  // addCheck();
 }
 countAllArticle();
 
 // Create ui for html
-
 function disapleArticle({ completed, id, text }) {
   const article = document.createElement('article');
   article.className =
@@ -91,20 +61,24 @@ function addItemToUi() {
     // console.log(e.target);
     e.preventDefault();
     if (inputValue.value) {
-      // const randomID = Math.random();
-      const randomID = up.childElementCount;
+      const randomID = Math.random().toFixed(4);
+      // const randomID = up.childElementCount;
       const userValue = {
         text: inputValue.value,
         completed: false,
-        id: randomID,
+        id: parseFloat(randomID),
       };
+      //add to LS
+      taskArticle.push(userValue);
+      localStorage.setItem('todos', JSON.stringify(taskArticle));
+      countAllArticle();
+
       //adding to html
       disapleArticle(userValue);
-      //add to LS
-      dataToHtml.push(userValue);
-      localStorage.setItem('todos', JSON.stringify(dataToHtml));
-      countAllArticle();
       inputValue.value = '';
+
+      let allInput = document.querySelectorAll('.allInput');
+      completeTask();
     }
   });
 }
@@ -115,7 +89,7 @@ addItemToUi();
 ////-----------------------------------------------------
 // const deleteBtn = document.querySelectorAll('.delete-btn');
 
-// console.log(deleteBtn);
+//-: remove article if press on x
 up.addEventListener('click', (e) => {
   if (e.target.classList.contains('delete-btn')) {
     let article = e.target.parentElement.parentElement;
@@ -129,7 +103,7 @@ up.addEventListener('click', (e) => {
       countAllArticle();
     }, 650);
     let taskIndex = taskArticle.findIndex(
-      (id) => id.id === parseInt(inputId.id)
+      (task) => task.id === parseInt(inputId.id)
     );
     // console.log(taskIndex);
     taskArticle.splice(taskIndex, 1);
@@ -140,13 +114,19 @@ up.addEventListener('click', (e) => {
 
 //Completed task or add Check
 
+function showTask(check, addImg, removeImg, cir, thisArticle) {
+  if (check.checked) {
+    cir.firstElementChild.setAttribute('style', addImg);
+    thisArticle.children[1].classList.add('line');
+    cir.firstElementChild.children[1].classList.remove('invisible');
+  } else {
+    cir.firstElementChild.removeAttribute('style', removeImg);
+    thisArticle.children[1].classList.remove('line');
+    cir.firstElementChild.children[1].classList.add('invisible');
+  }
+}
 let allInput = document.querySelectorAll('.allInput');
-// let allInput = allArticl[0].children[0].children[0].children[0];
-// let circle = document.querySelectorAll('article .circle ');
-// console.log(allInput);
-// console.log(allArticl[0].children[0].children[0].children[0]);
-
-const completeTask = function () {
+const completeTask = () => {
   for (let check of allInput) {
     // console.log(check);
     let addImg =
@@ -156,6 +136,7 @@ const completeTask = function () {
       ' background-image:linear-gradient(to right bottom, #57ddff, #c058f3) ';
     // console.log(check);
     let thisArticle = check.parentElement.parentElement.parentElement;
+    // console.log(thisArticle);
     let cir = thisArticle.children[0];
 
     if (thisArticle.getAttribute('completed') === 'true') {
@@ -170,39 +151,24 @@ const completeTask = function () {
       cir.firstElementChild.children[1].classList.add('invisible');
     }
 
-    // console.log(thisArticle.getAttribute('completed'));
-    // console.log(cir.firstElementChild.children[1]);
     check.addEventListener('click', (e) => {
       const idInput = check.id;
 
       thisArticle.setAttribute('completed', check.checked);
-      showTask(check, addImg, removeImg, cir, thisArticle);
 
-      for (let task of dataToHtml) {
+      for (let task of taskArticle) {
         if (task.id === parseInt(idInput)) {
-          // console.log(task.id);
           task.completed = check.checked;
-          // localStorage.setItem('todos', JSON.stringify(dataToHtml));
+          // localStorage.setItem('todos', JSON.stringify(taskArticle));
         }
       }
-      localStorage.setItem('todos', JSON.stringify(dataToHtml));
+      localStorage.setItem('todos', JSON.stringify(taskArticle));
       countAllArticle();
     });
   }
 };
 completeTask();
 
-function showTask(check, addImg, removeImg, cir, thisArticle) {
-  if (check.checked) {
-    cir.firstElementChild.setAttribute('style', addImg);
-    thisArticle.children[1].classList.add('line');
-    cir.firstElementChild.children[1].classList.remove('invisible');
-  } else {
-    cir.firstElementChild.removeAttribute('style', removeImg);
-    thisArticle.children[1].classList.remove('line');
-    cir.firstElementChild.children[1].classList.add('invisible');
-  }
-}
 ////------------------------------------------------------
 ////------------------------------------------------------
 ////------------------------------------------------------
@@ -254,7 +220,6 @@ function dynamkeShowBtns(button, bollen) {
         ui.style.display = 'flex';
       }
     });
-    // countAllArticle();
   });
 }
 
@@ -265,15 +230,15 @@ function dynamkeShowBtns(button, bollen) {
 clearCompleted.addEventListener('click', (e) => {
   allTask.forEach((article) => {
     if (article.getAttribute('completed') === 'true') {
-      console.log(article);
+      // console.log(article);
       up.removeChild(article);
       // console.log(article);
       countAllArticle();
     }
   });
   //remove completed html from local storage
-  let tasks = dataToHtml.filter((task) => task.completed === false);
-  localStorage.setItem('todos', JSON.stringify(tasks));
+  taskArticle = taskArticle.filter((task) => task.completed === false);
+  localStorage.setItem('todos', JSON.stringify(taskArticle));
 });
 
 ////-----------------------------------------------------
@@ -399,54 +364,3 @@ function showInOutButtons() {
 }
 
 showInOutButtons();
-
-// function addWhiteToArticle() {
-//   let articlesColor = document.querySelectorAll('article');
-//   articlesColor.forEach((article) => {
-//     toggles(article, 'upW');
-//     toggles(article, 'text-color');
-//   });
-// }
-// let rotate = 0;
-// function gsapAnimation() {
-//   let form = document.querySelector('form');
-//   let bodyBg = document.querySelector('body');
-//   let header = document.querySelector('header');
-//   let parentlistW = document.querySelector('.parent-list');
-//   let buttW = document.querySelector('.butt');
-//   let itmW = document.querySelector('.itm');
-//   let upW = document.querySelector('.up');
-//   let downW = document.querySelector('.down');
-//   let downW2 = document.querySelector('.down2');
-//   let placeHolder = document.querySelector('input');
-
-//   addWhiteToArticle();
-//   toggles(downW, 'downW');
-//   toggles(downW2, 'downW2');
-//   toggles(upW, 'upW');
-//   toggles(header, 'bg-light-mobile');
-//   toggles(bodyBg, 'toWhie');
-//   toggles(form, 'upW');
-//   toggles(buttW, 'upW');
-//   toggles(placeHolder, 'input');
-//   toggles(placeHolder, 'input2');
-//   toggles(dark_light, 'bg-icon-moon');
-//   rotate += 180;
-//   if (rotate === 360) {
-//     rotate = 0;
-//   }
-
-//   dark_light.style.transform = `rotate(${rotate}deg)`;
-// }
-// dark_light.addEventListener('click', gsapAnimation);
-// // // console.log(t);
-// // // localStorage.setItem('color', t);
-
-// function toggles(tag, tooge) {
-//   if (!dark_light.classList.contains('bg-icon-moon')) {
-//     tag.classList.add(`${tooge}`);
-//   } else {
-//     tag.classList.remove(`${tooge}`);
-//     // dark_light.classList.remove('bg-icon-moon');
-//   }
-// }
