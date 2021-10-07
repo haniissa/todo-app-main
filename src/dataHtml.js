@@ -3,25 +3,33 @@ export const dataToHtml = [
     text: 'javascript',
     completed: false,
     id: 0,
-    addCheck: false,
+    // addCheckImg: null,
+    // line: null,
+    // bgImg: null,
   },
   {
     text: 'html',
     completed: false,
     id: 1,
-    addCheck: false,
+    // addCheckImg: null,
+    // line: null,
+    // bgImg: null,
   },
   {
     text: 'css',
     completed: false,
     id: 2,
-    addCheck: false,
+    // addCheckImg: null,
+    // line: null,
+    // bgImg: null,
   },
   {
     text: 'python',
     completed: false,
     id: 3,
-    addCheck: false,
+    // addCheckImg: null,
+    // line: null,
+    // bgImg: null,
   },
 ];
 
@@ -40,3 +48,8 @@ export let todos = {
   createArticle() {},
   delItem() {},
 };
+/*
+addCheckImg: undefined,
+    line: undefined,
+    bgImg: undefined,
+*/

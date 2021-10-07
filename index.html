@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
 
 <head>
   <meta charset="UTF-8" />
@@ -27,128 +27,91 @@
   </style>
 </head>
 
-<body class="text-FontBody font-Josefin font-normal body">
-  <!-- header -->
-  <header class=" mx-auto px-8 pt-8 w-full  bg-dark-mobile h-60 bg-cover">
-    <div class="flex justify-between mb-10">
-      <div class="todo text-white">
-        <h1 class="tracking-widest uppercase text-4xl  font-bold">
-          TODO
-        </h1>
-      </div>
-      <div class="dark-light cursor-pointer bg-icon-sun h-7 bg-no-repeat w-7"></div>
+<body class="dark">
+  <div class="bg-cover bg-center   z-index absolute w-full  bg-no-repeat "> </div>
+  <div class="pt-8 text-FontBody font-Josefin font-normal">
+
+    <div class="sm:px-20 md:px-36 lg:px-52 xl:px-96 h-60">
+      <!-- header -->
+      <header class="text-FontBody font-Josefin font-normal mx-auto px-8 pt-8 w-full   ">
+
+        <div class="flex justify-between mb-10">
+          <div class="todo text-white">
+            <h1 class="tracking-widest uppercase text-4xl  font-bold">
+              TODO
+            </h1>
+          </div>
+          <div class="3 parentDark">
+            <div class="dark-light transform   cursor-pointer bg-icon-sun h-7 bg-no-repeat w-7">
+            </div>
+          </div>
+        </div>
+        <!-- form -->
+        <form onsubmit="return false" class="parent-list pt-4 pb-4 rounded-md">
+          <div class="3 pl-3.5   parentButt">
+            <button class="butt pointer-events-none border border-gray-500  absolute  h-6 w-6 rounded-3xl"
+              aria-label="button"></>
+          </div>
+          <!-- </label> -->
+          <input maxlength="25"
+            class="text-color ml-12 w-9/12 bg-transparent text-white placeholder-gray-500 outline-none" type="text"
+            placeholder="Create a new todo..." />
+        </form>
+        <!-- form -->
+      </header>
     </div>
-    <form onsubmit="return false" class="parent-list pt-4 pb-4 rounded-md">
-      <!-- <label class="inline-block relative select-none" for="mark"> -->
-      <!-- <input type="checkbox" name="" class="ml-6 opacity-0 cursor-pointer h-0 w-0" id="mark" /> -->
-      <button class="butt pointer-events-none  border border-gray-500 left-12 absolute right-0 h-6 w-6 rounded-3xl"
-        aria-label="button"></button>
-      <span class=""></span>
-      </button>
-      <!-- </label> -->
-      <input maxlength="20" class="ml-12 w-9/12 bg-transparent text-white placeholder-gray-500 outline-none" type="text"
-        placeholder="Create a new todo..." />
-    </form>
-  </header>
-  <!-- content -->
-  <section class="parent -mt-24 mx-auto px-8 pt-8 w-full ">
-    <!-- all articles -->
-    <div class="up capitalize rounded-t-md container  ul items-center mt-7">
-      <!-- work with addCheck2 -->
-      <!-- <article completed="false" draggable="true" id="draggable-1" class="itm  flex text-white pt-4 pb-4 pl-4 ">
-        <span class="circle border border-gray-500   right-0 h-6 w-6 rounded-3xl ">
-          <img class="img px-1.5 pt-1.5 pb-1 invisible" src="./src/images/icon-check.svg" alt="">
+    <!-- content -->
+    <div class="sm:px-20 md:px-36 lg:px-52 xl:px-96">
+      <section class=" parent -mt-24 mx-auto px-8 pt-8 w-full ">
+        <!-- all articles px-80-->
+        <div class="3 paretnUpDown">
+          <div class="up  capitalize rounded-t-md   ul items-center mt-7"></div>
+          <div class="down text-gray-500 rounded-b-md   pt-4  flex justify-between px-5 pb-4">
+            <div class="lef ">
+              <span class="num">4</span>
+              <span>items left</span>
+            </div>
+            <div class="all indown  down2  w-44  text-gray-500  ">
+              <div class="all-btns flex justify-center">
+                <button id="all" class="btn-1 fil pr-3 focus:outline-none  active">All</button>
+                <button id="active" class="btn-2 fil pr-3 focus:outline-none   ">Active</button>
+                <button id="complete" class="btn-3 fil pr-3 focus:outline-none  ">Completed</button>
+              </div>
+            </div>
+            <div class="right ">
+              <button type="reset" class="flex clearCompleted hover:text-gray-300">Clear Completed</button>
+            </div>
+          </div>
+        </div>
+        <div class="all outdown down2 mt-7 bg-GrayDown  rounded-md text-gray-500 rounded-b-md    px-5 pt-3 pb-3">
+          <div class="all-btns flex justify-center">
+            <button id="all" class="btn-1 fil pr-3 focus:outline-none  active">All</button>
+            <button id="active" class="btn-2 fil pr-3 focus:outline-none   ">Active</button>
+            <button id="complete" class="btn-3 fil pr-3 focus:outline-none  ">Completed</button>
+          </div>
+        </div>
+      </section>
+      <!-- Add dynamic number -->
+
+      <div class="text-center pt-4 text-gray-500">
+        <p>Drag and drop to reorder</p>
+      </div>
+      <div class="attribution pt-6 pb-5">
+        <span class="text-gray-500">
+
+          Challenge by
         </span>
-        <p class="text_P pl-3 flex-grow">lovely day 1</p>
-        <input class="allInput " type="checkbox" id="cir1">
-        <label for="cir1"></label>
-        <div class="">
-          <img class=" delete-btn bg-icon-cross mr-3 cursor-pointer" src="./src/images/icon-cross.svg" alt="">
-        </div>
-      </article>
-      <article completed="false" draggable="true" id="draggable-2" class="itm  flex text-white pt-4 pb-4 pl-4 ">
-        <span class="circle border border-gray-500   right-0 h-6 w-6 rounded-3xl ">
-          <img class="img px-1.5 pt-1.5 pb-1 invisible" src="./src/images/icon-check.svg" alt="">
-        </span>
-        <p class="text_P pl-3 flex-grow">lovely day 2</p>
-        <input class="allInput " type="checkbox" id="cir2">
-        <label for="cir2"></label>
-        <div class="">
-          <img class=" delete-btn bg-icon-cross mr-3 cursor-pointer" src="./src/images/icon-cross.svg" alt="">
-        </div>
-      </article> -->
-
-
-      <!-- last edit -->
-      <!-- <article draggable="true" id="draggable-"
-        class="itm rounded-t-md  flex justify-between text-white pt-4 pb-4 pl-6 text-left">
-        <label class="border border-gray-500   right-0 h-6 w-6 rounded-3xl" for="cr">
-          <span class="circle  ">
-            <input class="allInput hidden" type="checkbox" id="cr">
-            <img class="img px-1.5 pt-1.5" src="./src/images/icon-check.svg" alt="">
-          </span>
-        </label>
-        <p class="text_P pl-3 flex-grow">${task.text}</p>
-        <div class="">
-          <img class=" delete-btn bg-icon-cross mr-3 cursor-pointer" src="./src/images/icon-cross.svg" alt="">
-        </div>
-      </article> -->
-
-      <!-- work with addCheck -->
-
-      <!-- <article draggable="true" id="draggable-"
-        class="itm rounded-t-md  flex justify-between text-white pt-4 pb-4 pl-6 text-left">
-        <p class="text_P pl-6">lovely day old one</p>
-        <input class="allInput hidden" type="checkbox" id="cir1">
-        <label class=" " for="cir1">
-          <span class="circle border border-gray-500 left-12 absolute right-0 h-6 w-6 rounded-3xl ">
-            <img class="img px-1.5 pt-1.5 pb-1 invisible" src="./src/images/icon-check.svg" alt="">
-          </span>
-        </label>
-        <div class="">
-          <img class="delete-btn bg-icon-cross mr-3 cursor-pointer" src="./src/images/icon-cross.svg" alt="">
-        </div>
-      </article>
-      <article draggable="true" id="draggable-" class="itm  flex justify-between text-white pt-4 pb-4 pl-6 text-left">
-        <p class="text_P pl-6">lovely day 2</p>
-        <input class="allInput " type="checkbox" id="cir2">
-        <label class=" " for="cir2">
-          <span class="circle border border-gray-500 left-12 absolute right-0 h-6 w-6 rounded-3xl ">
-            <img class="img px-1.5 pt-1.5 pb-1 invisible" src="./src/images/icon-check.svg" alt="">
-          </span>
-        </label>
-        <div class="">
-          <img class="delete-btn bg-icon-cross mr-3 cursor-pointer" src="./src/images/icon-cross.svg" alt="">
-        </div>
-      </article> -->
-    </div>
-    <div class="down text-gray-500 rounded-b-md container  pt-4  flex justify-between px-5 pb-4">
-      <div class="lef">
-        <span class="num">4</span>
-        <span>items left</span>
-      </div>
-      <button type="reset" class="flex hover:text-BrightBlue">Clear Completed</button>
-    </div>
-    <div class="all down2 mt-7  rounded-md text-gray-500 rounded-b-md container   px-5 pt-3 pb-3">
-      <div class="all-btns flex justify-center">
-        <button class="btn-1 pr-3 focus:outline-none hover:text-BrightBlue">All</button>
-        <button class="btn-2 pr-3 focus:outline-none  hover:text-BrightBlue">Active</button>
-        <button class="btn-3 pr-3 focus:outline-none  hover:text-BrightBlue">Completed</button>
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. <span
+          class="text-gray-500">Coded by</span> <a href="#">Hani</a>.
       </div>
     </div>
-  </section>
-  <!-- Todo -->
+    <!-- Todo -->
+  </div>
 
-  <!-- Add dynamic number -->
-  <!-- items left All Active Completed Clear Completed Drag and drop to reorder
-    list -->
 
-  <!-- <div class="attribution">
-      Challenge by
-      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
-        >Frontend Mentor</a
-      >. Coded by <a href="#">Your Name Here</a>.
-    </div> -->
+
+
+
 </body>
 
 </html>

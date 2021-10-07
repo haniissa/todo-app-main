@@ -6,7 +6,7 @@
   "scripts": {
     "serve": "cross-env NODE_ENV=development concurrently \"postcss src/style.css -o src/build/tailwind.css --watch\"  \"live-server ../todo-app-main\"",
     "development": "cross-env NODE_ENV=development  postcss  src/style.css -o src/build/tailwind.css",
-    "npx":"npx tailwindcss-cli@latest build src/style.css -o src/build/tailwind.css"
+    "npx": "npx tailwindcss-cli@latest build src/style.css -o src/build/tailwind.css"
   },
   "keywords": [
     "to-do-app"
