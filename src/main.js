@@ -19,7 +19,7 @@ function countAllArticle() {
 }
 countAllArticle();
 
-// Create ui for html
+//====================== Create ui for html================
 function disapleArticle({ completed, id, text }) {
   const article = document.createElement('article');
   article.className =
@@ -55,30 +55,30 @@ const showArticleInHtml = function () {
 showArticleInHtml();
 countAllArticle();
 
+//==============add tag after press==============
 function addItemToUi() {
   const form = document.querySelector('form');
   form.addEventListener('submit', (e) => {
     // console.log(e.target);
     e.preventDefault();
     if (inputValue.value) {
-      const randomID = Math.random().toFixed(4);
-      // const randomID = up.childElementCount;
+      const randomID = Math.floor(Math.random() * 1000);
+
       const userValue = {
         text: inputValue.value,
         completed: false,
-        id: parseFloat(randomID),
+        id: randomID,
       };
       //add to LS
       taskArticle.push(userValue);
       localStorage.setItem('todos', JSON.stringify(taskArticle));
-      countAllArticle();
 
       //adding to html
       disapleArticle(userValue);
       inputValue.value = '';
 
-      let allInput = document.querySelectorAll('.allInput');
       completeTask();
+      countAllArticle();
     }
   });
 }
@@ -114,7 +114,7 @@ up.addEventListener('click', (e) => {
 
 //Completed task or add Check
 
-function showTask(check, addImg, removeImg, cir, thisArticle) {
+const showTask = function (check, addImg, removeImg, cir, thisArticle) {
   if (check.checked) {
     cir.firstElementChild.setAttribute('style', addImg);
     thisArticle.children[1].classList.add('line');
@@ -124,9 +124,9 @@ function showTask(check, addImg, removeImg, cir, thisArticle) {
     thisArticle.children[1].classList.remove('line');
     cir.firstElementChild.children[1].classList.add('invisible');
   }
-}
-let allInput = document.querySelectorAll('.allInput');
-const completeTask = () => {
+};
+const completeTask = function () {
+  let allInput = document.querySelectorAll('.allInput');
   for (let check of allInput) {
     // console.log(check);
     let addImg =
@@ -136,9 +136,7 @@ const completeTask = () => {
       ' background-image:linear-gradient(to right bottom, #57ddff, #c058f3) ';
     // console.log(check);
     let thisArticle = check.parentElement.parentElement.parentElement;
-    // console.log(thisArticle);
     let cir = thisArticle.children[0];
-
     if (thisArticle.getAttribute('completed') === 'true') {
       check.checked = true;
       cir.firstElementChild.setAttribute('style', addImg);
@@ -152,12 +150,16 @@ const completeTask = () => {
     }
 
     check.addEventListener('click', (e) => {
-      const idInput = check.id;
+      // console.log(cir.firstElementChild.firstElementChild);
+      // const idInput = thisArticle.children[0].firstElementChild.firstElementChild;
+      // const idInput = check.id;
+      const currentId = cir.firstElementChild.firstElementChild.id;
 
       thisArticle.setAttribute('completed', check.checked);
+      showTask(check, addImg, removeImg, cir, thisArticle);
 
       for (let task of taskArticle) {
-        if (task.id === parseInt(idInput)) {
+        if (task.id === parseInt(currentId)) {
           task.completed = check.checked;
           // localStorage.setItem('todos', JSON.stringify(taskArticle));
         }
@@ -173,7 +175,8 @@ completeTask();
 ////------------------------------------------------------
 ////------------------------------------------------------
 //todo: filter with buttons
-let allTask = document.querySelectorAll('.up article');
+// console.log(allArticl);
+
 let allBtns = document.querySelectorAll('.parent .indown  .all-btns  button');
 let allBtns2 = document.querySelectorAll('.parent .outdown  .all-btns  button');
 
@@ -197,12 +200,6 @@ filter.forEach((container) => {
     }
   });
 });
-dynamkeShowBtns(allBtns, undefined);
-dynamkeShowBtns(allBtns2, undefined);
-dynamkeShowBtns(Active, true);
-dynamkeShowBtns(Active2, true);
-dynamkeShowBtns(complete, false);
-dynamkeShowBtns(complete2, false);
 
 ////---------------------------------------------------
 //------------------------!  Wow !---------------------------
@@ -211,6 +208,7 @@ dynamkeShowBtns(complete2, false);
 function dynamkeShowBtns(button, bollen) {
   button.forEach((btn) => {
     btn.addEventListener('click', (e) => {
+      let allTask = document.querySelectorAll('.up article');
       for (let ui of allTask) {
         ui.getAttribute('completed') === `${bollen}`
           ? (ui.style.display = 'none')
@@ -222,12 +220,19 @@ function dynamkeShowBtns(button, bollen) {
     });
   });
 }
+dynamkeShowBtns(allBtns, undefined);
+dynamkeShowBtns(allBtns2, undefined);
+dynamkeShowBtns(Active, true);
+dynamkeShowBtns(Active2, true);
+dynamkeShowBtns(complete, false);
+dynamkeShowBtns(complete2, false);
 
 ////---------------------------------------------------------
 ////---------------------------------------------------------
 ////---------------------------------------------------------
 //remove completed task from html
 clearCompleted.addEventListener('click', (e) => {
+  let allTask = document.querySelectorAll('.up article');
   allTask.forEach((article) => {
     if (article.getAttribute('completed') === 'true') {
       // console.log(article);
@@ -250,9 +255,7 @@ let dark_light = document.querySelector('.dark-light');
 const IconSun = 'bg-icon-moon';
 // const IconMoon = 'bg-icon-moon';
 const selectIcon = localStorage.getItem('selectedIcon');
-// console.log(selectIcon);
-const them = document.body.setAttribute('class', localStorage.getItem('them'));
-// console.log(dark_light.classList.contains('bg-icon-sun'));
+// const them = document.body.setAttribute('class', localStorage.getItem('them'));
 const getCurrentIcon = () => {
   return dark_light.classList.contains(IconSun)
     ? 'bg-icon-sun'
@@ -321,7 +324,9 @@ function drop(e) {
 
   return false;
 }
+
 function loopAllArticleAndAddEvent() {
+  // localStorage.setItem('sort', JSON.stringify(e));
   allArticl.forEach((e) => {
     addEventDragAndDrop(e);
   });
@@ -334,7 +339,6 @@ function addEventDragAndDrop(el) {
   el.addEventListener('dragleave', dragLeave);
   el.addEventListener('dragend', dragEnd);
   el.addEventListener('drop', drop);
-
   // console.log('el');
 }
 //prevent width size
