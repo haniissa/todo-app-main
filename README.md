@@ -61,11 +61,10 @@ Users should be able to:
 ### Useful resources
 
 - [google](https://www.google.com) - google is good for teaching
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
 
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+*
 
 ## Author
 
 - Website - [Hani](https://github.com/haniissa)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- Frontend Mentor - [@haniissa](https://www.frontendmentor.io/profile/haniissa)
