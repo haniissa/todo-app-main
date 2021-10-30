@@ -37,6 +37,7 @@ Users should be able to:
 ### Screenshot
 
 ![screen](todo1.jpg)
+![screen](todo2.jpg)
 
 ### Links
 
