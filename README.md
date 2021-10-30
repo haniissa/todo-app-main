@@ -36,7 +36,7 @@ Users should be able to:
 
 ### Screenshot
 
-![screen]('./src/images/todo1.jpg)
+![screen](todo1.jpg)
 
 ### Links
 
