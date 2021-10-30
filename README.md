@@ -41,7 +41,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [let me see your face here (: )](https://www.frontendmentor.io/solutions/css-html-js-tailwindcss-7rNGWZU1r)
 - Live Site URL: [todolistlovely](https://todolistlovely.netlify.app/)
 
 ## My process
@@ -55,8 +55,6 @@ Users should be able to:
 - Mobile-first workflow
 - pure js
 - [tailwindcss](https://tailwindcss.com/) - tailwindcss For styles
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
 
 ### Useful resources
 
