@@ -8,7 +8,7 @@ const inputValue = document.querySelector('.parent-list input');
 let dragSrcEl = null;
 // All articles come here for every enter
 let allArticl = [];
-console.log(allArticl);
+// console.log(allArticl);
 
 const up = document.querySelector('.parent .up');
 
@@ -36,13 +36,16 @@ function disapleArticle({ completed, id, text }) {
           </span>
         </label>
         <p class="text_P pl-3 flex-grow">${text}</p>
-        <div class="">
-          <img class=" delete-btn bg-icon-cross mr-3 cursor-pointer" src="./src/images/icon-cross.svg" alt="">
+        <div class="btn btn-circle btn-sm btn-ghost animate-pulse">
+            <img class=" delete-btn bg-icon-cross mr-3 cursor-pointer" src="./src/images/icon-cross.svg" alt="">
         </div>
       `;
   let newArticle = up.appendChild(article);
   allArticl.push(newArticle);
+  loopAllArticleAndAddEvent2();
 }
+//<img class=" delete-btn bg-icon-cross mr-3 cursor-pointer" src="./src/images/icon-cross.svg" alt="">
+
 //create demo article when html ui is empty
 let taskArticle = JSON.parse(localStorage.getItem('todos')) || dataToHtml;
 
@@ -87,7 +90,6 @@ addItemToUi();
 ////-----------------------------------------------------
 ////-----------------------------------------------------
 ////-----------------------------------------------------
-// const deleteBtn = document.querySelectorAll('.delete-btn');
 
 //-: remove article if press on x
 up.addEventListener('click', (e) => {
@@ -235,9 +237,7 @@ clearCompleted.addEventListener('click', (e) => {
   let allTask = document.querySelectorAll('.up article');
   allTask.forEach((article) => {
     if (article.getAttribute('completed') === 'true') {
-      // console.log(article);
       up.removeChild(article);
-      // console.log(article);
       countAllArticle();
     }
   });
@@ -252,12 +252,12 @@ clearCompleted.addEventListener('click', (e) => {
 //?  ----------Dark completed----------------
 
 let dark_light = document.querySelector('.dark-light');
-const IconSun = 'bg-icon-moon';
+const IconMoon = 'bg-icon-moon';
 // const IconMoon = 'bg-icon-moon';
 const selectIcon = localStorage.getItem('selectedIcon');
-// const them = document.body.setAttribute('class', localStorage.getItem('them'));
+const them = document.body.setAttribute('class', localStorage.getItem('them'));
 const getCurrentIcon = () => {
-  return dark_light.classList.contains(IconSun)
+  return dark_light.classList.contains(IconMoon)
     ? 'bg-icon-sun'
     : 'bg-icon-moon';
 };
@@ -265,7 +265,7 @@ const getCurrentIcon = () => {
 //! when first click will add sun to LL and add moon to class dark_light
 if (selectIcon) {
   dark_light.classList[selectIcon === 'bg-icon-sun' ? 'add' : 'remove'](
-    IconSun
+    IconMoon
   );
 }
 dark_light.addEventListener('click', (e) => {
@@ -273,7 +273,7 @@ dark_light.addEventListener('click', (e) => {
   document.body.className === 'light'
     ? (document.body.className = '')
     : (document.body.className = 'light');
-  dark_light.classList.toggle(IconSun);
+  dark_light.classList.toggle(IconMoon);
   localStorage.setItem('selectedIcon', getCurrentIcon());
   localStorage.setItem('them', document.body.className);
 });
@@ -281,26 +281,24 @@ dark_light.addEventListener('click', (e) => {
 //?---------------------------
 
 function dragStart(e) {
-  // console.log(e.target);
   dragSrcEl = this;
   e.dataTransfer.effectAllowed = 'move';
   e.dataTransfer.setData('text/html', this.innerHTML);
 }
 function dragOver(e) {
   e.preventDefault();
-  // console.log(e.target.innerText);
   e.dataTransfer.dropEffect = 'move';
 
   return false;
 }
 function dragEnter(e) {
   this.classList.add('over');
-  // console.log('enter');
 }
 
 function dragLeave(e) {
   e.stopPropagation();
   this.classList.remove('over');
+  // localStorage.removeItem('sort', JSON.stringify(taskArticle));
 }
 
 function dragEnd(e) {
@@ -315,23 +313,22 @@ function dragEnd(e) {
 function drop(e) {
   e.preventDefault();
   if (dragSrcEl !== this) {
-    // console.log(dragSrcEl);
+    // console.log(dragSrcEl.children[1].innerText);
     dragSrcEl.innerHTML = this.innerHTML;
-    // console.log(dragSrcEl);
     this.innerHTML = e.dataTransfer.getData('text/html');
-    // console.log(e.currentTarget);
   }
 
   return false;
 }
 
-function loopAllArticleAndAddEvent() {
+function loopAllArticleAndAddEvent2() {
   // localStorage.setItem('sort', JSON.stringify(e));
-  allArticl.forEach((e) => {
+  let allTask = document.querySelectorAll('.up article');
+  allTask.forEach((e) => {
     addEventDragAndDrop(e);
   });
 }
-loopAllArticleAndAddEvent();
+
 function addEventDragAndDrop(el) {
   el.addEventListener('dragstart', dragStart);
   el.addEventListener('dragenter', dragEnter);
@@ -339,10 +336,32 @@ function addEventDragAndDrop(el) {
   el.addEventListener('dragleave', dragLeave);
   el.addEventListener('dragend', dragEnd);
   el.addEventListener('drop', drop);
-  // console.log('el');
+  // console.log(el);
 }
 //prevent width size
+Sortable.create(up, {
+  group: 'todo-tasks',
+  options: {
+    animation: 100,
+    draggable: '#list li',
+    handle: '#list li',
+    sort: true,
+    filter: '.sortable-disabled',
+    chosenClass: 'active',
+  },
 
+  store: {
+    get: function (sortable) {
+      var order = localStorage.getItem(sortable.options.group.name);
+      return order ? order.split('|') : [];
+    },
+
+    set: function (sortable) {
+      var order = sortable.toArray();
+      localStorage.setItem(sortable.options.group.name, order.join('|'));
+    },
+  },
+});
 // let up1 = document.querySelector('section .up');
 
 function showInOutButtons() {

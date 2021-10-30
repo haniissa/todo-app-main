@@ -13,6 +13,11 @@
   <script defer type="module" src="./src/main.js"></script>
   <title>Frontend Mentor | Todo app</title>
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <!-- daisyui talwin -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@1.14.7/dist/full.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+  <!-- Latest Sortable -->
+  <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
 
   <style>
     .attribution {
@@ -27,7 +32,7 @@
   </style>
 </head>
 
-<body class="dark">
+<body class="">
   <div class="bg-cover bg-center   z-index absolute w-full  bg-no-repeat "> </div>
   <div class="pt-8 text-FontBody font-Josefin font-normal">
 
@@ -63,14 +68,16 @@
     <!-- content -->
     <div class="sm:px-20 md:px-36 lg:px-52 xl:px-96">
       <section class=" parent -mt-24 mx-auto px-8 pt-8 w-full ">
-        <!-- all articles px-80-->
         <div class="3 paretnUpDown">
+          <!--todo ------------all todo list here -->
           <div class="up  capitalize rounded-t-md   ul items-center mt-7"></div>
+          <!--todo ------------all todo list here -->
           <div class="down text-gray-500 rounded-b-md   pt-4  flex justify-between px-5 pb-4">
             <div class="lef ">
               <span class="num">4</span>
               <span>items left</span>
             </div>
+            <!-- =========== inner buttons -->
             <div class="all indown  down2  w-44  text-gray-500  ">
               <div class="all-btns flex justify-center">
                 <button id="all" class="btn-1 fil pr-3 focus:outline-none  active">All</button>
@@ -78,6 +85,7 @@
                 <button id="complete" class="btn-3 fil pr-3 focus:outline-none  ">Completed</button>
               </div>
             </div>
+            <!-- =========== end inner buttons -->
             <div class="right ">
               <button type="reset" class="flex clearCompleted hover:text-gray-300">Clear Completed</button>
             </div>

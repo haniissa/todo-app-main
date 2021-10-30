@@ -6,7 +6,9 @@ body {
   perspective: 800px;
   background-color: #161722;
   user-select: none;
+  min-height: 100vh;
 }
+
 .z-index {
   background-image: url('./images/bg-desktop-dark.jpg');
   z-index: -1;
